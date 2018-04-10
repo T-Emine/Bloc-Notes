@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to Categorie!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset ('css/bootstrap.css') }}">
+</head>
+
+<body>
+<div class="container">
+    <h1>Ajouter une catégorie</h1>
+            {{form_start(cat)}}
+            <div class="form-group"> {{ form_row(cat.libelle, {'attr':{'class':'form-control'}}) }}</div>
+            {{form_end(cat)}}
+    <button onclick="location.href = './listNote';" id="myButton" class="btn btn-link" >Retour à la liste des notes</button>
+<div>
+
+
+</body>
+
+</html> 

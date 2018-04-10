@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to Emine NotePad!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset ('css/bootstrap.css') }}">
+</head>
+
+<body>
+<div class="container">
+    <h1>Ajouter une note</h1>
+            {{form_start(forms) }}
+            <div class="form-group"> {{ form_row(forms.titre, {'attr':{'class':'form-control'}}) }}</div>
+            <div class="form-group"> {{ form_row(forms.contenu, {'attr':{'class':'form-control'}}) }}</div>
+            {{ form_row(forms.date) }} <br/>
+            <div class="form-group"> {{ form_row(forms.categorie, {'attr':{'class':'form-control'}}) }}</div>
+            {{ form_end(forms) }}
+        
+<button onclick="location.href = './listNote';" id="myButton" class="btn btn-link" >Retour à la liste des notes</button>
+            <button>Ajouter un tag</button>
+
+<div>
+
+
+</body>
+<script>
+
+    function wrapText(elementID, openTag, closeTag) {
+        var textArea = $('#' + elementID);
+        var len = textArea.val().length;
+        var start = textArea[0].selectionStart;
+        var end = textArea[0].selectionEnd;
+        var selectedText = textArea.val().substring(start, end);
+        var replacement = openTag + selectedText + closeTag;
+        textArea.val(textArea.val().substring(0, start) + replacement +
+        textArea.val().substring(end, len));
+    }
+
+    $('button').click(function() {
+        wrapText("notepadbundle_note_content", "<tag>", "</tag>");
+    });
+
+
+</script>
+
+</html>
+
