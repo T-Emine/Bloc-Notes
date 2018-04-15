@@ -47,9 +47,49 @@ class NoteController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($task);
             $em->flush();
+
+
+            $xmlText = '<?xml version="1.0" encoding="UTF-8"?>';
+            $xmlText .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+            $xmlText .= '    <formulaire>';
+            $xmlText .= '        <titre>'; $xmlText.= $formulaire->get('titre')->getData(); $xmlText.=' </titre>';
+            $xmlText .= '        <libelle>'; $xmlText.= $formulaire->get('categorie.libelle')->getData(); $xmlText.='</libelle> ';
+            $xmlText .= '        <date>';$xmlText.= $formulaire->get('titre')->getData(); $xmlText.= '</date>';
+            $xmlText .= '        <contenu>'; $xmlText.= $formulaire->get('titre')->getData(); $xmlText.= '</contenu>';
+            $xmlText .= '    </formulaire>';
+            $xmlText .= ' </urlset>';
+
+            $xml = new \DOMDocument('1.0', 'utf-8');
+            $tag = $xml->createElement('items',$xmlText);
+            $xml->appendChild($tag);
+            return new Response($xml->saveXML());
+
             return new Response('La tâche ajoutée avec succès !'); }
-        return $this->render('base.html.twig', array('forms' => $formulaire->createView()));
+            $a = $this->render('base.html.twig', array('forms' => $formulaire->createView()));
+            
+        return $a;
     }
+/*
+    public function creerXML(Formulaire $formulaire)
+    {
+        <!DOCTYPE html>
+
+        <html>
+        <script>
+        <?xml version="1.0" encoding="UTF-8"?>
+            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+                <url>
+                    <id> {{formulaire.id}} </id>
+                    <titre> {{ formulaire.titre }} </h5>
+                    <libelle> {{ formulaire.categorie.libelle }} </libelle> 
+                    <date> {{ formulaire.date|date('d/m/Y') }} </date>
+                    <contenu> {{ formulaire.contenu }} </p>
+                </url>
+            </urlset>
+        </script>
+        </html
+    }
+    */
 /* CELUI CI EST GERER EN HAUT.
     public function createAction(){
                 

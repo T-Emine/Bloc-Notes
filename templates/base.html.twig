@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}Welcome to Emine NotePad!{% endblock %}</title>
     <link rel="stylesheet" href="{{ asset ('css/bootstrap.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -12,13 +13,13 @@
     <h1>Ajouter une note</h1>
             {{form_start(forms) }}
             <div class="form-group"> {{ form_row(forms.titre, {'attr':{'class':'form-control'}}) }}</div>
-            <div class="form-group"> {{ form_row(forms.contenu, {'attr':{'class':'form-control'}}) }}</div>
+            <div class="form-group" id="contenu"> {{ form_row(forms.contenu, {'attr':{'class':'form-control'}}) }}</div>
             {{ form_row(forms.date) }} <br/>
             <div class="form-group"> {{ form_row(forms.categorie, {'attr':{'class':'form-control'}}) }}</div>
             {{ form_end(forms) }}
         
-<button onclick="location.href = './listNote';" id="myButton" class="btn btn-link" >Retour à la liste des notes</button>
-            <button>Ajouter un tag</button>
+            <button onclick="location.href = './listNote';" id="myButton" class="btn btn-link" >Retour à la liste des notes</button>
+            <button id = "tag">Add tag</button>
 
 <div>
 
@@ -27,7 +28,7 @@
 <script>
 
     function wrapText(elementID, openTag, closeTag) {
-        var textArea = $('#' + elementID);
+        var textArea = $(elementID);
         var len = textArea.val().length;
         var start = textArea[0].selectionStart;
         var end = textArea[0].selectionEnd;
@@ -36,11 +37,15 @@
         textArea.val(textArea.val().substring(0, start) + replacement +
         textArea.val().substring(end, len));
     }
-
+/*
     $('button').click(function() {
         wrapText("notepadbundle_note_content", "<tag>", "</tag>");
     });
-
+*/
+        $('#tag').click(function() { 
+               wrapText({{forms.contenu.vars.id}}, "<tag>", "</tag>"); 
+              //alert('IN MY ASS');
+        });
 
 </script>
 
