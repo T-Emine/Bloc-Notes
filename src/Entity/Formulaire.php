@@ -126,7 +126,14 @@ class Formulaire
      * @return text
      */
     public function getContenu()
-    {
+    {  
+        /*
+        $dom = new \DomDocument;
+        $dom->load($this->contenu);
+        $formulaire = $dom->getElementsByTagName('formulaire');
+        $c = $dom->getElementsByTagName('contenu');
+        return $c;
+        */
         return $this->contenu;
     }
 
@@ -156,7 +163,7 @@ class Formulaire
 ?>
 
 
-// Formulaire.Entities.User.dcm.xml
+<!-- Formulaire.Entities.User.dcm.xml -->
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping

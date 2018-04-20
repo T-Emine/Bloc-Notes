@@ -30,45 +30,66 @@ class NoteController extends Controller
     {
         // creates a task and gives it some dummy data for this example
         $task = new Formulaire();
-       
+
 
         $formulaire = $this->createFormBuilder($task)
             ->add('titre', TextType::class, array('label' => 'Titre'))
-            ->add('contenu', TextType::class, array('label' => 'Contenu'))
+            ->add('contenu' , TextType::class, array('label' => 'Contenu'))
             ->add('date', DateType::class, array('label' => 'Date'))
             ->add('categorie', EntityType::class, array('class' => Categorie::class,
                                                         'choice_label' => 'libelle',))
             ->add('bt_sauvegarde', SubmitType::class, array('label' => 'Sauvegarder'))
             ->getForm(); 
 
+
             $formulaire->handleRequest($request);
             $task = $formulaire->getData();
             if ($formulaire->isSubmitted() && $formulaire->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $xmlText = '<?xml version="1.0" encoding="UTF-8"?> ';
+            $xmlText .= '        <contenu>';
+            $xmlText .= $task->getContenu() ;
+            $xmlText .='        </contenu>';
+
+
+            $task->setContenu($xmlText);
             $em->persist($task);
             $em->flush();
 
 
-            $xmlText = '<?xml version="1.0" encoding="UTF-8"?>';
-            $xmlText .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-            $xmlText .= '    <formulaire>';
-            $xmlText .= '        <titre>'; $xmlText.= $formulaire->get('titre')->getData(); $xmlText.=' </titre>';
-            $xmlText .= '        <libelle>'; $xmlText.= $formulaire->get('categorie.libelle')->getData(); $xmlText.='</libelle> ';
-            $xmlText .= '        <date>';$xmlText.= $formulaire->get('titre')->getData(); $xmlText.= '</date>';
-            $xmlText .= '        <contenu>'; $xmlText.= $formulaire->get('titre')->getData(); $xmlText.= '</contenu>';
-            $xmlText .= '    </formulaire>';
-            $xmlText .= ' </urlset>';
 
-            $xml = new \DOMDocument('1.0', 'utf-8');
-            $tag = $xml->createElement('items',$xmlText);
-            $xml->appendChild($tag);
-            return new Response($xml->saveXML());
 
             return new Response('La tâche ajoutée avec succès !'); }
             $a = $this->render('base.html.twig', array('forms' => $formulaire->createView()));
             
         return $a;
     }
+
+    public function creerXML(string $contenu)
+    {
+    
+        $xmlText = '<?xml version="1.0" encoding="UTF-8"?> \n';
+        $xmlText .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> \n';
+        $xmlText .= '    <formulaire> \n';
+        $xmlText .= '        <contenu>'+ $contenu +'</contenu>\n';
+        $xmlText .= '    </formulaire> \n';
+        $xmlText .= ' </urlset> \n';
+
+        
+        //$handle = fopen("./leXML.txt", "a");
+        //fwrite($handle, $xmlText);
+        
+
+        //$xml = new \DOMDocument('1.0', 'utf-8');
+        //$tag = $xml->createElement('items',$xmlText);
+        //$xml->appendChild($tag);
+        //return new Response($xml->saveXML());
+        var_dump($xmlText);
+        return $xmlText;
+        
+    }
+
 /*
     public function creerXML(Formulaire $formulaire)
     {
