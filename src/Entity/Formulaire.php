@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
 
 
 /**
@@ -28,6 +29,7 @@ class Formulaire
      *  @var date
      * 
      * @ORM\Column(name="datetime", type="date")
+     * @Serializer\Type("DateTime<'Y-m-d'>")
      */
     private $date;
 
@@ -162,21 +164,3 @@ class Formulaire
 
 ?>
 
-
-<!-- Formulaire.Entities.User.dcm.xml -->
-<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
-                          http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
-
-    <entity name="Entity\Formulaire" table="formulaire">
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO" />
-        </id>
-        <field name="date" type="date">
-        <field name="titre" column="titre" type="string" length="255" nullable="false" />
-        <field name="contenu" column="contenu" type="text" />
-        <field name="categorie" column="categorie" type="Categorie" nullable="false" />
-        </field>
-    </entity>
-</doctrine-mapping>

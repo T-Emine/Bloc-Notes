@@ -79,9 +79,8 @@ class ListNoteController extends Controller
                 return $this->render('listNote.html.twig', array('listNote' => $note, 'listCat'=>$cat,'search'=>$formulaire->createView()));
 
             }
-
-
     }
+    
 
     /**
      * @Route("/searchTAG", name="searchTAG")
@@ -123,18 +122,18 @@ class ListNoteController extends Controller
 public function deleteNote(Request $request)
 {
 
-$id = $request ->query->get('id_');
-$entityManager = $this->getDoctrine()->getManager();
-$em = $entityManager-> getRepository (Formulaire::class)->find($id);
-try {
-    $entityManager->remove($em);
-    $entityManager->flush();
-}catch (\Exception $ex){
-    throw $this->createNotFoundException(
-        'No product found' 
-    );
-}
-return $this->redirectToRoute('listNote');
+        $id = $request ->query->get('id_');
+        $entityManager = $this->getDoctrine()->getManager();
+        $em = $entityManager-> getRepository (Formulaire::class)->find($id);
+        try {
+            $entityManager->remove($em);
+            $entityManager->flush();
+        }catch (\Exception $ex){
+            throw $this->createNotFoundException(
+                'No product found' 
+            );
+        }
+        return $this->redirectToRoute('listNote');
 }
 
 
@@ -144,27 +143,27 @@ return $this->redirectToRoute('listNote');
 public function updateNote(Request $request)
 {
 
-$id = $request ->query->get('id_');
-$entityManager = $this->getDoctrine()->getManager();
-$em = $entityManager-> getRepository (Formulaire::class)->find($id);        
-$formulaire = $this->createFormBuilder($em)
-->add('titre',TextType::class,array('label'=>'Titre'))  
-->add('contenu',TextType::class,array('label'=>'Contenu'))
-->add('date',DateType::class,array('label'=>'Date'))  
-->add('categorie',EntityType::class,array('class' => Categorie::class,
-                                          'choice_label' => 'libelle',))
-->add('bt_sauvegarde',SubmitType::class,array('label'=>'Sauvegarder'))  
-->getForm();
+        $id = $request ->query->get('id_');
+        $entityManager = $this->getDoctrine()->getManager();
+        $em = $entityManager-> getRepository (Formulaire::class)->find($id);        
+        $formulaire = $this->createFormBuilder($em)
+        ->add('titre',TextType::class,array('label'=>'Titre'))  
+        ->add('contenu',TextType::class,array('label'=>'Contenu'))
+        ->add('date',DateType::class,array('label'=>'Date'))  
+        ->add('categorie',EntityType::class,array('class' => Categorie::class,
+                                                'choice_label' => 'libelle',))
+        ->add('bt_sauvegarde',SubmitType::class,array('label'=>'Sauvegarder'))  
+        ->getForm();
 
-$formulaire->handleRequest ($request);
+        $formulaire->handleRequest ($request);
 
-if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-    $entityManager->flush();
-    return $this->redirectToRoute('listNote');
-}
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $entityManager->flush();
+            return $this->redirectToRoute('listNote');
+        }
 
-return $this->render('base.html.twig',array('forms'=>$formulaire->createView())) ;     
-        
+        return $this->render('base.html.twig',array('forms'=>$formulaire->createView())) ;     
+                
 }
 
 
