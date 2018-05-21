@@ -159,7 +159,6 @@ class Formulaire
         return $this->categorie;
     }
 
-
 }
 
 ?>

@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Categorie;
-
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -28,8 +27,6 @@ class ListCatController extends Controller
                 'No product found' 
             );
         }
-
-        //$().button('toggle')
         
         return $this->render('listCat.html.twig', array('listCat' => $ctg));
     }

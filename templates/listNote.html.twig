@@ -9,9 +9,9 @@
     <body>
         <div class="container">
             <h1>Liste des notes</h1>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="nav navbar navbar-expand-lg navbar-light bg-light navbar-left">
+                    <ul class="nav navbar-nav navbar-left">
                         <li class="nav-item">
                             <a class="nav-link" href="./note">Ajouter une note</a>
                         </li>
@@ -19,30 +19,23 @@
                             <a class="nav-link" href="./categorie">Ajouter une catégorie</a>
                         </li>     
                     </ul>
-                </div> 
+                </div>
                 {{ form_start(search) }}
                     <div class="form-group" id="contenu"> {{ form_row(search.tag, {'attr':{'class':'form-control'}}) }}</div>
-                {{ form_end(search) }}   
-        
- <!--               <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button onclick="location.href = './searchTAG';" id="myButton" class="btn btn-link" >Search</button> -->
-                    <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit" id = "btsearch">Search</button> 
-                </form> 
-                -->
-            </nav>
+                {{ form_end(search) }} 
+=           </nav>
+              
             <br>
 
             {% for formulaire in listNote %}
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                            <h5 class="mb-1"> {{ formulaire.titre }} </h5>
-                            <small> {{ formulaire.categorie.libelle }} - {{ formulaire.date|date('d/m/Y') }} </small>
-                                    
-                            <p class="mb-1"> {{ formulaire.contenu }} </p>
-                            <a href=updateNote?id_={{ formulaire.id }}> Update </a> 
-                            <a href=deleteNote?id_={{ formulaire.id }}> Delete </a> 
-                    </a>
+                    <div class="list-group-item list-group-item-action flex-column align-items-start">
+                        <h5 class="mb-1"> {{ formulaire.titre }} </h5>
+                        <small> {{ formulaire.categorie.libelle }} - {{ formulaire.date|date('d/m/Y') }} </small>                                   
+                        <p class="mb-1"> {{ formulaire.contenu }} </p>
+                        <a href=updateNote?id_={{ formulaire.id }}> Update </a> 
+                        <a href=deleteNote?id_={{ formulaire.id }}> Delete </a> 
+                    </div>
                     <br>
                 </div>
             {% endfor %}

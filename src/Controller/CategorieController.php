@@ -27,7 +27,6 @@ class CategorieController extends Controller
 
         $cat_forms->handleRequest($request);
         $task = $cat_forms->getData();
-        //var_dump($task);//Avait été mis pr voir s'il prenait bien la cat dans bd pr gerer un prob av sa
         if ($cat_forms->isSubmitted() && $cat_forms->isValid()) {
         $em = $this->getDoctrine()->getManager();
         $em->persist($task);

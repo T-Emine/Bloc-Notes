@@ -14,21 +14,12 @@ use App\Entity\Categorie;
 
 class NoteController extends Controller
 {
-    /* INUTILE
 
-    public function index()
-    {
-        return $this->render('note  /index.html.twig', [
-            'controller_name' => 'NoteController',
-        ]);
-    }
-*/
     /**
      * @Route("/note", name="note")
      */
     public function new(Request $request) //GERE L ENVOI ET LA RECUPERATION DE DONNEES EN MEME TEMPS
     {
-        // creates a task and gives it some dummy data for this example
         $task = new Formulaire();
 
 
@@ -52,15 +43,11 @@ class NoteController extends Controller
             $xmlText .= $task->getContenu() ;
             $xmlText .='        </contenu>';
 
-
             $task->setContenu($xmlText);
             $em->persist($task);
             $em->flush();
 
-
-
-
-            return new Response('La tâche ajoutée avec succès !'); }
+            return new Response('La tâche est ajoutée avec succès !'); }
             $a = $this->render('base.html.twig', array('forms' => $formulaire->createView()));
             
         return $a;
@@ -76,65 +63,11 @@ class NoteController extends Controller
         $xmlText .= '    </formulaire> \n';
         $xmlText .= ' </urlset> \n';
 
-        
-        //$handle = fopen("./leXML.txt", "a");
-        //fwrite($handle, $xmlText);
-        
-
-        //$xml = new \DOMDocument('1.0', 'utf-8');
-        //$tag = $xml->createElement('items',$xmlText);
-        //$xml->appendChild($tag);
-        //return new Response($xml->saveXML());
         var_dump($xmlText);
         return $xmlText;
         
     }
 
-/*
-    public function creerXML(Formulaire $formulaire)
-    {
-        <!DOCTYPE html>
 
-        <html>
-        <script>
-        <?xml version="1.0" encoding="UTF-8"?>
-            <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-                <url>
-                    <id> {{formulaire.id}} </id>
-                    <titre> {{ formulaire.titre }} </h5>
-                    <libelle> {{ formulaire.categorie.libelle }} </libelle> 
-                    <date> {{ formulaire.date|date('d/m/Y') }} </date>
-                    <contenu> {{ formulaire.contenu }} </p>
-                </url>
-            </urlset>
-        </script>
-        </html
-    }
-    */
-/* CELUI CI EST GERER EN HAUT.
-    public function createAction(){
-                
-        $firstTest = $this->getDoctrine()->getManager();
-        $ft = new Formulaire();
-        $ft->setTitre("Le premier titre")
-           ->setDate(new \DateTime())
-           ->setCategorie("TestCat")
-           ->setContenu("Je test pour la première fois la db et je met du texte à la bourin !")
-        ;        
-        $firstTest->persist($ft);
-        $firstTest->flush();
-
-        return $this->render('base.html.twig', array());
-        //le prof fais cette méthode un peu differemment
-    }
-*/
-/*
-    
-    public function showAction(){
-        $em = $this->getDoctrine()->getManager();
-        $formulaire = $em->getRepository("Formulaire:Formulaire")->findAll();
-        return $this->render('base.html.twig', array('formulaire' => $formulaire,));
-    }
-*/
 }
 

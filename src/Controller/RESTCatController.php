@@ -4,18 +4,14 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use App\Entity\Categorie;
 use App\Entity\catulaire;
-
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class RESTCatController extends Controller
@@ -158,13 +154,11 @@ class RESTCatController extends Controller
             $content = $request->getContent();
             $elem = json_decode($content, true);
 
-            ///if (isset($elem ['id'])){
             if (isset($id)){
                 try{
                     $cat = $this->getDoctrine()
                     ->getRepository(Categorie::class)
                     ->find($id);
-                    //->find($elem['id']);
                 }catch(\Exception $ex){
                     return new Response('Erreur put recherche id');
                 }

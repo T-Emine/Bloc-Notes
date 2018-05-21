@@ -4,20 +4,15 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use App\Entity\Categorie;
 use App\Entity\Formulaire;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -44,22 +39,12 @@ class RESTFormController extends Controller
 
         }else{
             
-            $em = $this -> getDoctrine() -> getRepository (Formulaire::class)->findall();
-            /*
-            $encoder = array(new JsonEncoder());
-            $normalizers= array(new ObjectNormalizer());
-            $serializer = new Serializer ($normalizers,$encoder);
-    
-            $data =  $serializer->serialize($em, 'json');
-      */      
-
+            $em = $this -> getDoctrine() -> getRepository (Formulaire::class)->findall();     
             $data = $this->get('serializer')->serialize($em, 'json');
-
             $response = new JsonResponse();
             $response->headers->set('Content-Type', 'application/json');
             $response->headers->set('Access-Control-Allow-Origin', '*');
-            $response->headers->set("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-            
+            $response->headers->set("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");            
             $response->setContent($data);
         }
             return $response;
@@ -106,13 +91,13 @@ class RESTFormController extends Controller
                 return new Response('Erreur post');
             }
         }
-            $response = new Response();
-            $response->headers->set('Content-Type', 'application/json');
-            $response->headers->set('Access-Control-Allow-Origin', '*');
-            $response->headers->set("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-            $response->headers->set("Access-Control-Allow-Headers", 'Content-Type',true);
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        $response->headers->set("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+        $response->headers->set("Access-Control-Allow-Headers", 'Content-Type',true);
 
-            return $response;        
+        return $response;        
    }
     
 
@@ -150,9 +135,8 @@ class RESTFormController extends Controller
                 if($form != null){
                     if (isset($elem ['date'])){
                         $date = new DateTime($elem['date']);
-                        //$id = $form->setdate($date);
                         $form->setdate($date);
-                    } 
+                    }
                     if (isset($elem ['titre'])){    
                         $form->setTitre($elem['titre']);
                     }
@@ -166,23 +150,16 @@ class RESTFormController extends Controller
                         ->find($elem['categorie_id']);//c'est l'id
                 
                         $form->setCategorie($cat);
-
-                         //$id = $request ->query->get('id_');
-
                     }
                     $em=$this->getDoctrine()->getManager();
         
                     try{
-                        //$em->persist($form);
                         $em->flush();
                     }catch(\Exception $ex){
                         return new Response('Erreur post');
                     }
-
-
-
                 }else{
-                    return new Response(' ID non existant');
+                    return new Response('ID non existant');
                 }
             }
         }
@@ -210,9 +187,7 @@ class RESTFormController extends Controller
             return $response;
 
         }else{
-            //$content = $request->getContent();
-            //$elem = json_decode($content, true);
-
+            
             if (isset($id)){
                 try{
                     $form = $this->getDoctrine()
