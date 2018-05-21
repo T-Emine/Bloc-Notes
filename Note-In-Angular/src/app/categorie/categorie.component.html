@@ -1,0 +1,22 @@
+
+<ul class="categorie">
+  <button type="button" class="btn btn-link" (click)="getCategorie()">Liste des catégories</button> 
+  <button type="button" class="btn btn-link" [routerLink]="['/catAdd']" > 
+    Ajouter une catégorie
+  </button> 
+
+  <div *ngFor= "let c of cat">
+    <div class="list-group">
+      <div class="list-group-item list-group-item-action flex-column align-items-start">
+        <span class="badge"> {{c.libelle}} </span>
+        <button class="btn btn-primary btn-sm" [routerLink]="['/detailCat', c.id]" >
+          Modifier
+        </button>
+        <button class="btn btn-primary btn-sm" (click)="deleteCat(c)">
+          Supprimer
+        </button>
+      </div>
+    </div>
+  </div>
+</ul>
+<router-outlet></router-outlet>

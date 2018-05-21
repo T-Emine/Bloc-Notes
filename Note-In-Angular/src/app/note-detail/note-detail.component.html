@@ -1,0 +1,37 @@
+<div *ngIf="noteInput">
+  <h2>{{ noteInput.titre | uppercase }} </h2>
+  <div>
+    <label>Titre :
+      <input [(ngModel)]="noteInput.titre" placeholder="titre"/>
+    </label>
+    <br>
+    <label>Contenu :
+      <input [(ngModel)]="noteInput.contenu" placeholder="contenu"/>
+    </label>
+    <br>
+    <label> Date : <br>
+      <form class="form-inline">
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dp" [(ngModel)]="noteInput.date" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                  <img src="assets/img/calendar-icon.png" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                </button>
+              </div>
+            </div>
+          </div>
+      </form> 
+    </label>
+    <br>
+    <div class="form-group">
+      <label for="power"> Catégorie : </label>
+      <select class="form-control" id="power" required [(ngModel)]="noteInput.categorie_id"> 
+        <option *ngFor="let lc of tabCat" [value]="lc.id" >{{lc.libelle}}</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-sm" (click)="saveNote(noteInput)">Save</button>
+  <button class="btn btn-primary btn-sm" (click)="goBack()">Go back</button>
+</div>

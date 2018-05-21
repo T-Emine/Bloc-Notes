@@ -1,0 +1,22 @@
+<div class="container">
+  <button type="button" class="btn btn-link"  (click)="getNote()"> Liste des notes </button> 
+    <button [routerLink]="['/noteAdd']" type="button" class="btn btn-link" > Ajouter une note </button> 
+      <div *ngFor= "let n of note">
+        <div class="list-group">
+          <div class="list-group-item list-group-item-action flex-column align-items-start">
+            <h5 class="mb-1">{{n.titre}} </h5><br> 
+              <p class="mb-1">{{n.contenu}} </p><br> 
+              <small> {{n.categorie.libelle}} - </small> 
+              <small> {{n.date|date:'yyyy/MM/dd'}} </small><br> 
+              <button class="btn btn-primary btn-sm" [routerLink]="['/detailNote', n.id]" >
+                Modifier
+              </button>    
+              <button class="btn btn-primary btn-sm" (click)="deleteNote(n)">
+                Supprimer
+              </button>
+          </div>
+        </div>
+      </div>
+</div>
+<router-outlet></router-outlet>
+

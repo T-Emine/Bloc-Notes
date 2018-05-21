@@ -1,0 +1,10 @@
+<div *ngIf="catInput">
+  <h2>{{ catInput.libelle | uppercase }} </h2>
+  <div>
+    <label>libelle:
+      <input [(ngModel)]="catInput.libelle" placeholder="libelle"/>
+    </label>
+  </div>
+  <button class="btn btn-primary btn-sm" (click)="saveCat(catInput)">Save</button>
+  <button class="btn btn-primary btn-sm" (click)="goBack()">Go back</button>
+</div>
