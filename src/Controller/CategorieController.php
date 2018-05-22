@@ -14,6 +14,7 @@ use App\Entity\Categorie;
 class CategorieController extends Controller
 {
     /**
+     * Création d'une catégorie
      * @Route("/categorie", name="categorie")
      */
     public function index(Request $request)

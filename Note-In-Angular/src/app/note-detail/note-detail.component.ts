@@ -34,16 +34,28 @@ export class NoteDetailComponent implements OnInit {
     this.getListCategorie();
   }
 
+   
+ /*
+  * Méthode pour afficher les détails d'une note à modifiée
+  * via son id
+  */
   getNoteDetail(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.noteService.getNoteID(id).subscribe(note => this.noteInput = note);
   }
  
+   
+ /*
+  * Méthode pour le retour du bouton "Back"
+  */
   goBack(): void {
     this.location.back();
   }
 
   //PUT chercher bd+save
+ /*
+  * Méthode pour enregistrer une note modifiée
+  */
   saveNote(noteSave: Note): void {
     var y = noteSave.date['year'];
     var m = noteSave.date['month'];
@@ -60,6 +72,10 @@ export class NoteDetailComponent implements OnInit {
     alert("La note à bien été modifié !");
   }
 
+   
+ /*
+  * Méthode pour avoir la liste de catégorie dans le scroll barre
+  */
   getListCategorie(): void {
     this.categorieService.getCategorie().subscribe(cat => this.tabCat = cat);;
   }

@@ -21,6 +21,7 @@ use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
 class ListNoteController extends Controller
 {
     /**
+     * Fonction qui retourne la liste des notes
      * @Route("/listNote", name="listNote")
      */
     public function index(Request $request )
@@ -79,6 +80,7 @@ class ListNoteController extends Controller
     
 
     /**
+     * Fonction de recherche de TAG
      * @Route("/searchTAG", name="searchTAG")
      */
     
@@ -88,8 +90,6 @@ class ListNoteController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $em = $entityManager-> getRepository (Formulaire::class)->findAll();
 
-        $z="Pas trouvé";
-        
         foreach($em as $a) {   
             $c= $a->getContenu();
             $xml = new \DOMDocument('1.0', 'utf-8');
@@ -113,6 +113,7 @@ class ListNoteController extends Controller
 
 
     /**
+    * Fontion de suppression d'une note
     * @Route("/deleteNote", name="deleteNote")
     */
     public function deleteNote(Request $request)
@@ -134,6 +135,7 @@ class ListNoteController extends Controller
 
 
     /**
+    * Fonction de modification d'une note
     * @Route("/updateNote", name="updateNote")
     */
     public function updateNote(Request $request)

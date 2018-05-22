@@ -16,12 +16,12 @@ class NoteController extends Controller
 {
 
     /**
+     * Création d'une formulaire (bloc-note)
      * @Route("/note", name="note")
      */
     public function new(Request $request) //GERE L ENVOI ET LA RECUPERATION DE DONNEES EN MEME TEMPS
     {
         $task = new Formulaire();
-
 
         $formulaire = $this->createFormBuilder($task)
             ->add('titre', TextType::class, array('label' => 'Titre'))
@@ -51,21 +51,6 @@ class NoteController extends Controller
             $a = $this->render('base.html.twig', array('forms' => $formulaire->createView()));
             
         return $a;
-    }
-
-    public function creerXML(string $contenu)
-    {
-    
-        $xmlText = '<?xml version="1.0" encoding="UTF-8"?> \n';
-        $xmlText .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> \n';
-        $xmlText .= '    <formulaire> \n';
-        $xmlText .= '        <contenu>'+ $contenu +'</contenu>\n';
-        $xmlText .= '    </formulaire> \n';
-        $xmlText .= ' </urlset> \n';
-
-        var_dump($xmlText);
-        return $xmlText;
-        
     }
 
 

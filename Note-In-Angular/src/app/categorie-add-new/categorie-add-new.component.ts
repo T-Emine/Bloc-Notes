@@ -20,11 +20,17 @@ export class CategorieAddNewComponent implements OnInit {
 
   ngOnInit() {
   }
- 
+  
+ /*
+  * Méthode pour le retour du bouton "Back"
+  */
   goBack(): void {
     this.location.back();
   }
 
+  /*
+  * Méthode pour sauver l'ajout d'une nouvelle catégories
+  */
   addCat(name: string): void {
     console.log(name);
     this.categorieService.addCat(name).subscribe();

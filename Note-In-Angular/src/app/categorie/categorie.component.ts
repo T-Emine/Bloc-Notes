@@ -16,10 +16,16 @@ export class CategorieComponent implements OnInit {
 
   ngOnInit() { }
 
+ /*
+  * Méthode pour afficher la liste des catégories
+  */
   getCategorie(): void {
     this.categorieService.getCategorie().subscribe(cat => this.cat = cat);
   }
  
+/*
+  * Méthode pour supprimer une catégories
+  */
   deleteCat(catDel: Categorie): void {
     this.cat = this.cat.filter(c => c !== catDel); //enleve la ligne
     this.categorieService.deleteCat(catDel).subscribe();

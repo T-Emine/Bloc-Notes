@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class ListCatController extends Controller
 {
     /**
+     * Fonction qui retourne la liste des catégories
      * @Route("/listCat", name="listCat")
      */
     public function index()
@@ -33,6 +34,7 @@ class ListCatController extends Controller
 
 
     /**
+     * Fonction de suppression de catégorie
      * @Route("/deleteCat", name="deleteCat")
      */
     public function deleteCat(Request $request)
@@ -54,6 +56,7 @@ class ListCatController extends Controller
     
     
     /**
+     * Fonction de modification de catégorie
      * @Route("/updateCat", name="updateCat")
      */
     public function updateCat(Request $request)
@@ -75,6 +78,5 @@ class ListCatController extends Controller
         }
 
         return $this->render('categorie.html.twig',array('cat'=>$cat_forms->createView())) ;     
-                
     }
 }

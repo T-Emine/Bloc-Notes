@@ -24,6 +24,7 @@ use \DateTime;
 class RESTFormController extends Controller
 {
     /**
+     * Fonction GET
      * @Route("/api/form/get", name="REST_GET_FORM")
      * @Method({"GET","OPTIONS"})
      */
@@ -52,6 +53,7 @@ class RESTFormController extends Controller
     }
 
     /**
+     * Fonction POST
      * @Route("/api/form/post", name="REST_POST_FORM")
      * @Method({"POST","OPTIONS"})
      */
@@ -102,6 +104,7 @@ class RESTFormController extends Controller
     
 
     /**
+     * Fonction PUT
      * @Route("/api/form/put", name="REST_PUT_FORM")
      * @Method({"PUT","OPTIONS"})
      */
@@ -172,6 +175,7 @@ class RESTFormController extends Controller
     }
 
     /**
+     * Fonction DELETE
      * @Route("/api/form/delete/{id}", name="REST_DELETE_FORM")
      * @Method({"DELETE","OPTIONS"})
      */
@@ -214,6 +218,7 @@ class RESTFormController extends Controller
     }
 
     /**
+     * Fonction pour récupérer une note via son id
      * @Route("/api/form/getID/{id}", name="REST_GET_FORMID")
      * @Method({"GET","OPTIONS"})
      */

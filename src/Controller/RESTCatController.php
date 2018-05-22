@@ -17,6 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class RESTCatController extends Controller
 {
     /**
+     * Fonction GET
      * @Route("/api/cat/get", name="REST_GET_CAT")
      */
     public function REST_get()
@@ -49,9 +50,9 @@ class RESTCatController extends Controller
     }
 
     /**
+     * Fonction POST
      * @Route("/api/cat/post", name="REST_POST_CAT")
      * @Method({"POST","OPTIONS"})
-     * 
      */
     public function REST_post(Request $request)
     {
@@ -85,9 +86,11 @@ class RESTCatController extends Controller
 
 
    /**
+     * Fonction PUT
+     * Recherche / edit / update
+     * 
      * @Route("/api/cat/put", name="REST_PUT_CAT")
      * @Method({"PUT","OPTIONS"})
-     * Recherche et edit et update
      */
     public function REST_put(Request $request)
     {
@@ -136,6 +139,7 @@ class RESTCatController extends Controller
     }
 
     /**
+     * Fonction DELETE
      * @Route("/api/cat/delete/{id}", name="REST_DELETE_CAT")
      * @Method({"DELETE","OPTIONS"})
      */
@@ -180,6 +184,7 @@ class RESTCatController extends Controller
     }
 
     /**
+     * Fonction pour récupérer une catégorie via son id
      * @Route("/api/cat/getID/{id}", name="REST_GET_CATID")
      * @Method({"GET","OPTIONS"})
      */

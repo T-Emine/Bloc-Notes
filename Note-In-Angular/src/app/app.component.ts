@@ -11,10 +11,18 @@ export class AppComponent {
     private router: Router
   ){}
 
+   
+ /*
+  * Méthode pour aller dans la partie note
+  */
   gotoNote() : void{
     this.router.navigate(['/note']);
   }
 
+   
+ /*
+  * Méthode pour aller dans la partie catégorie
+  */
   gotoCat() : void{
     this.router.navigate(['/cat']);
   }

@@ -7,7 +7,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
-* Recherche TAG
+* Classe RechercheTAG
+* Classe utilisé pour la recherche de tag
 *
 */
 

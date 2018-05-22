@@ -24,16 +24,26 @@ export class CategorieDetailComponent implements OnInit {
     this.getCatDetail();
   }
 
+ /*
+  * Méthode qui affiche la catégorie qui va être modifiée
+  * avec les cases préremplies
+  */
   getCatDetail(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.categorieService.getCategorieID(id).subscribe(cat => this.catInput = cat);
   }
  
+ /*
+  * Méthode pour le retour du bouton "Back"
+  */
   goBack(): void {
     this.location.back();
   }
 
   //PUT chercher bd+save
+ /*
+  * Méthode pour le sauver la catégorie modifiée
+  */
   saveCat(catSave: Categorie) : void {
     this.categorieService.saveCat(catSave).subscribe();
     alert("La catégorie à bien été modifiée !");

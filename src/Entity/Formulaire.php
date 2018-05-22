@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation as Serializer;
 
 
 /**
-* Formulaire
+* Classe Formulaire
 *
 * @ORM\Table(name="formulaire")
 * @ORM\Entity(repositoryClass="App\Repository\FormulaireRepository")

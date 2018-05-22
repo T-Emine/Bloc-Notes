@@ -26,11 +26,18 @@ export class NoteAddNewComponent implements OnInit {
   ngOnInit() {
     this.getListCategorie();
   }
-
+   
+ /*
+  * Méthode pour le retour du bouton "Back"
+  */
   goBack(): void {
     this.location.back();
   }
 
+   
+ /*
+  * Méthode pour ajouter une nouvelle note
+  */
   addNote(name: Note): void {
     var a = name.date;
     var y = a['year'];
@@ -52,6 +59,10 @@ export class NoteAddNewComponent implements OnInit {
     alert("La note à bien été ajouté !");
   }
 
+   
+ /*
+  * Méthode pour avoir la liste de catégorie dans le scroll barre de la page /noteAdd
+  */
   getListCategorie(): void {
     this.categorieService.getCategorie().subscribe(cat => this.tabCat = cat);;
   }
