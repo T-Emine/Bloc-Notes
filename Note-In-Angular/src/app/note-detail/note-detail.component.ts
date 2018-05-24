@@ -68,7 +68,6 @@ export class NoteDetailComponent implements OnInit {
     console.log(d);
     noteSave.date=this.s;
     this.noteService.saveNote(noteSave).subscribe();
-    this.router.navigate(['/listNote']);
     alert("La note à bien été modifié !");
   }
 
